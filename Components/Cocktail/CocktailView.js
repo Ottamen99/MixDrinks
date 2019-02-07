@@ -39,7 +39,9 @@ class CocktailView extends React.Component {
   }
 
   render() {
-    if (this.state.cocktail[0] != undefined) {
+    if (this.state.cocktail[0] != undefined) {     
+      console.log(this.state.cocktail[0]);
+       
       return (
         <Container >
           <Content >
@@ -58,21 +60,21 @@ class CocktailView extends React.Component {
                 </ListItem>
               </LinearGradient>
 
-              {this.state.cocktail[0].strIngredient1 != "" ? (this.state.cocktail[0].strMeasure1 != "" ? <ListItem><Text>{this.state.cocktail[0].strIngredient1} - {this.state.cocktail[0].strMeasure1}</Text></ListItem> : <ListItem><Text>{this.state.cocktail[0].strIngredient1}</Text></ListItem>) : console.log(false)}
-              {this.state.cocktail[0].strIngredient2 != "" ? (this.state.cocktail[0].strMeasure2 != "" ? <ListItem><Text>{this.state.cocktail[0].strIngredient2} - {this.state.cocktail[0].strMeasure2}</Text></ListItem> : <ListItem><Text>{this.state.cocktail[0].strIngredient2}</Text></ListItem>) : console.log(false)}
-              {this.state.cocktail[0].strIngredient3 != "" ? (this.state.cocktail[0].strMeasure3 != "" ? <ListItem><Text>{this.state.cocktail[0].strIngredient3} - {this.state.cocktail[0].strMeasure3}</Text></ListItem> : <ListItem><Text>{this.state.cocktail[0].strIngredient3}</Text></ListItem>) : console.log(false)}
-              {this.state.cocktail[0].strIngredient4 != "" ? (this.state.cocktail[0].strMeasure4 != "" ? <ListItem><Text>{this.state.cocktail[0].strIngredient4} - {this.state.cocktail[0].strMeasure4}</Text></ListItem> : <ListItem><Text>{this.state.cocktail[0].strIngredient4}</Text></ListItem>) : console.log(false)}
-              {this.state.cocktail[0].strIngredient5 != "" ? (this.state.cocktail[0].strMeasure5 != "" ? <ListItem><Text>{this.state.cocktail[0].strIngredient5} - {this.state.cocktail[0].strMeasure5}</Text></ListItem> : <ListItem><Text>{this.state.cocktail[0].strIngredient5}</Text></ListItem>) : console.log(false)}
-              {this.state.cocktail[0].strIngredient6 != "" ? (this.state.cocktail[0].strMeasure6 != "" ? <ListItem><Text>{this.state.cocktail[0].strIngredient6} - {this.state.cocktail[0].strMeasure6}</Text></ListItem> : <ListItem><Text>{this.state.cocktail[0].strIngredient6}</Text></ListItem>) : console.log(false)}
-              {this.state.cocktail[0].strIngredient7 != "" ? (this.state.cocktail[0].strMeasure7 != "" ? <ListItem><Text>{this.state.cocktail[0].strIngredient7} - {this.state.cocktail[0].strMeasure7}</Text></ListItem> : <ListItem><Text>{this.state.cocktail[0].strIngredient7}</Text></ListItem>) : console.log(false)}
-              {this.state.cocktail[0].strIngredient8 != "" ? (this.state.cocktail[0].strMeasure8 != "" ? <ListItem><Text>{this.state.cocktail[0].strIngredient8} - {this.state.cocktail[0].strMeasure8}</Text></ListItem> : <ListItem><Text>{this.state.cocktail[0].strIngredient8}</Text></ListItem>) : console.log(false)}
-              {this.state.cocktail[0].strIngredient9 != "" ? (this.state.cocktail[0].strMeasure9 != "" ? <ListItem><Text>{this.state.cocktail[0].strIngredient9} - {this.state.cocktail[0].strMeasure9}</Text></ListItem> : <ListItem><Text>{this.state.cocktail[0].strIngredient9}</Text></ListItem>) : console.log(false)}
-              {this.state.cocktail[0].strIngredient10 != "" ? (this.state.cocktail[0].strMeasure10 != "" ? <ListItem><Text>{this.state.cocktail[0].strIngredient10} - {this.state.cocktail[0].strMeasure10}</Text></ListItem> : <ListItem><Text>{this.state.cocktail[0].strIngredient10}</Text></ListItem>) : console.log(false)}
-              {this.state.cocktail[0].strIngredient11 != "" ? (this.state.cocktail[0].strMeasure11 != "" ? <ListItem><Text>{this.state.cocktail[0].strIngredient11} - {this.state.cocktail[0].strMeasure11}</Text></ListItem> : <ListItem><Text>{this.state.cocktail[0].strIngredient11}</Text></ListItem>) : console.log(false)}
-              {this.state.cocktail[0].strIngredient12 != "" ? (this.state.cocktail[0].strMeasure12 != "" ? <ListItem><Text>{this.state.cocktail[0].strIngredient12} - {this.state.cocktail[0].strMeasure12}</Text></ListItem> : <ListItem><Text>{this.state.cocktail[0].strIngredient12}</Text></ListItem>) : console.log(false)}
-              {this.state.cocktail[0].strIngredient13 != "" ? (this.state.cocktail[0].strMeasure13 != "" ? <ListItem><Text>{this.state.cocktail[0].strIngredient13} - {this.state.cocktail[0].strMeasure13}</Text></ListItem> : <ListItem><Text>{this.state.cocktail[0].strIngredient13}</Text></ListItem>) : console.log(false)}
-              {this.state.cocktail[0].strIngredient14 != "" ? (this.state.cocktail[0].strMeasure14 != "" ? <ListItem><Text>{this.state.cocktail[0].strIngredient14} - {this.state.cocktail[0].strMeasure14}</Text></ListItem> : <ListItem><Text>{this.state.cocktail[0].strIngredient14}</Text></ListItem>) : console.log(false)}
-              {this.state.cocktail[0].strIngredient15 != "" ? (this.state.cocktail[0].strMeasure15 != "" ? <ListItem><Text>{this.state.cocktail[0].strIngredient15} - {this.state.cocktail[0].strMeasure15}</Text></ListItem> : <ListItem><Text>{this.state.cocktail[0].strIngredient15}</Text></ListItem>) : console.log(false)}
+              {this.state.cocktail[0].strIngredient1.trim() != "" ? (this.state.cocktail[0].strMeasure1.trim() != "" ? <ListItem><Text>{this.state.cocktail[0].strIngredient1.trim()} - {this.state.cocktail[0].strMeasure1.trim()}</Text></ListItem> : <ListItem><Text>{this.state.cocktail[0].strIngredient1.trim()}</Text></ListItem>) : console.log(false)}
+              {this.state.cocktail[0].strIngredient2.trim() != "" ? (this.state.cocktail[0].strMeasure2.trim() != "" ? <ListItem><Text>{this.state.cocktail[0].strIngredient2.trim()} - {this.state.cocktail[0].strMeasure2.trim()}</Text></ListItem> : <ListItem><Text>{this.state.cocktail[0].strIngredient2.trim()}</Text></ListItem>) : console.log(false)}
+              {this.state.cocktail[0].strIngredient3.trim() != "" ? (this.state.cocktail[0].strMeasure3.trim() != "" ? <ListItem><Text>{this.state.cocktail[0].strIngredient3.trim()} - {this.state.cocktail[0].strMeasure3.trim()}</Text></ListItem> : <ListItem><Text>{this.state.cocktail[0].strIngredient3.trim()}</Text></ListItem>) : console.log(false)}
+              {this.state.cocktail[0].strIngredient4.trim() != "" ? (this.state.cocktail[0].strMeasure4.trim() != "" ? <ListItem><Text>{this.state.cocktail[0].strIngredient4.trim()} - {this.state.cocktail[0].strMeasure4.trim()}</Text></ListItem> : <ListItem><Text>{this.state.cocktail[0].strIngredient4.trim()}</Text></ListItem>) : console.log(false)}
+              {this.state.cocktail[0].strIngredient5.trim() != "" ? (this.state.cocktail[0].strMeasure5.trim() != "" ? <ListItem><Text>{this.state.cocktail[0].strIngredient5.trim()} - {this.state.cocktail[0].strMeasure5.trim()}</Text></ListItem> : <ListItem><Text>{this.state.cocktail[0].strIngredient5.trim()}</Text></ListItem>) : console.log(false)}
+              {this.state.cocktail[0].strIngredient6.trim() != "" ? (this.state.cocktail[0].strMeasure6.trim() != "" ? <ListItem><Text>{this.state.cocktail[0].strIngredient6.trim()} - {this.state.cocktail[0].strMeasure6.trim()}</Text></ListItem> : <ListItem><Text>{this.state.cocktail[0].strIngredient6.trim()}</Text></ListItem>) : console.log(false)}
+              {this.state.cocktail[0].strIngredient7.trim() != "" ? (this.state.cocktail[0].strMeasure7.trim() != "" ? <ListItem><Text>{this.state.cocktail[0].strIngredient7.trim()} - {this.state.cocktail[0].strMeasure7.trim()}</Text></ListItem> : <ListItem><Text>{this.state.cocktail[0].strIngredient7.trim()}</Text></ListItem>) : console.log(false)}
+              {this.state.cocktail[0].strIngredient8.trim() != "" ? (this.state.cocktail[0].strMeasure8.trim() != "" ? <ListItem><Text>{this.state.cocktail[0].strIngredient8.trim()} - {this.state.cocktail[0].strMeasure8.trim()}</Text></ListItem> : <ListItem><Text>{this.state.cocktail[0].strIngredient8.trim()}</Text></ListItem>) : console.log(false)}
+              {this.state.cocktail[0].strIngredient9.trim() != "" ? (this.state.cocktail[0].strMeasure9.trim() != "" ? <ListItem><Text>{this.state.cocktail[0].strIngredient9.trim()} - {this.state.cocktail[0].strMeasure9.trim()}</Text></ListItem> : <ListItem><Text>{this.state.cocktail[0].strIngredient9.trim()}</Text></ListItem>) : console.log(false)}
+              {this.state.cocktail[0].strIngredient10.trim() != "" ? (this.state.cocktail[0].strMeasure10.trim() != "" ? <ListItem><Text>{this.state.cocktail[0].strIngredient10.trim()} - {this.state.cocktail[0].strMeasure10.trim()}</Text></ListItem> : <ListItem><Text>{this.state.cocktail[0].strIngredient10.trim()}</Text></ListItem>) : console.log(false)}
+              {this.state.cocktail[0].strIngredient11.trim() != "" ? (this.state.cocktail[0].strMeasure11.trim() != "" ? <ListItem><Text>{this.state.cocktail[0].strIngredient11.trim()} - {this.state.cocktail[0].strMeasure11.trim()}</Text></ListItem> : <ListItem><Text>{this.state.cocktail[0].strIngredient11.trim()}</Text></ListItem>) : console.log(false)}
+              {this.state.cocktail[0].strIngredient12.trim() != "" ? (this.state.cocktail[0].strMeasure12.trim() != "" ? <ListItem><Text>{this.state.cocktail[0].strIngredient12.trim()} - {this.state.cocktail[0].strMeasure12.trim()}</Text></ListItem> : <ListItem><Text>{this.state.cocktail[0].strIngredient12.trim()}</Text></ListItem>) : console.log(false)}
+              {this.state.cocktail[0].strIngredient13.trim() != "" ? (this.state.cocktail[0].strMeasure13.trim() != "" ? <ListItem><Text>{this.state.cocktail[0].strIngredient13.trim()} - {this.state.cocktail[0].strMeasure13.trim()}</Text></ListItem> : <ListItem><Text>{this.state.cocktail[0].strIngredient13.trim()}</Text></ListItem>) : console.log(false)}
+              {this.state.cocktail[0].strIngredient14.trim() != "" ? (this.state.cocktail[0].strMeasure14.trim() != "" ? <ListItem><Text>{this.state.cocktail[0].strIngredient14.trim()} - {this.state.cocktail[0].strMeasure14.trim()}</Text></ListItem> : <ListItem><Text>{this.state.cocktail[0].strIngredient14.trim()}</Text></ListItem>) : console.log(false)}
+              {this.state.cocktail[0].strIngredient15.trim() != "" ? (this.state.cocktail[0].strMeasure15.trim() != "" ? <ListItem><Text>{this.state.cocktail[0].strIngredient15.trim()} - {this.state.cocktail[0].strMeasure15.trim()}</Text></ListItem> : <ListItem><Text>{this.state.cocktail[0].strIngredient15.trim()}</Text></ListItem>) : console.log(false)}
 
               <LinearGradient
                 colors={['#ffbc00', '#fe9c00', '#fb7900', '#f45200', '#eb1212']}
@@ -113,7 +115,7 @@ const styles = StyleSheet.create({
   container: {
     marginBottom: 20,
     borderRadius: 5,
-    backgroundColor: '#FFF6EE',
+    backgroundColor: '#ecf0f1',
   },
   card: {
     flex: 1,

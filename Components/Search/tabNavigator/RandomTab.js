@@ -1,32 +1,61 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList } from 'react-native';
-import { Content, ListItem, List } from 'native-base';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { Container, Content } from 'native-base';
 import FlatGrid from 'react-native-super-grid';
 
-class SearchBody extends React.Component {
+class RandomTab extends React.Component {
+
+
+    state = {
+        categories: {},
+        loaded: false
+    }
+
+    categoriesSearch = () => {
+        //const drinkName = this.state.searchCocktail.toLocaleLowerCase()
+        const query = 'https://www.thecocktaildb.com/api/json/v1/1/random.php'
+        fetch(query).then((response) => {
+            var data = response._bodyInit ? JSON.parse(response._bodyInit) : false
+
+            if (data) {
+                this.setState({
+                    categories: data.drinks,
+                    loaded: true
+                })
+            }
+        }).catch((error) => {
+            //this.setState({cocktailFound: false})
+        })
+    }
+
+    componentDidMount() {
+
+    }
+
+    componentWillMount() {
+        this.categoriesSearch()
+    }
+
     render() {
 
-        const cocktailData = this.props.cocktailData
-        const nav = this.props.myNav
-
-          if (cocktailData != undefined) {
+        if (this.state.categories[0] != undefined) {
             bigArray = []
             cpt = 0
-            cocktailData.forEach(element => {
+            this.state.categories.forEach(element => {
                 tmp = { name: element.strDrink, image: element.strDrinkThumb }
                 cpt++
                 bigArray.push(tmp)
             });
             return (
                 <FlatGrid
-                    itemDimension={130}
+                    itemDimension={300}
                     items={bigArray}
                     style={styles.gridView}
                     // staticDimension={300}
                     // fixed
                     // spacing={20}
                     renderItem={({ item, index }) => (
-                        <TouchableOpacity style={[styles.itemContainer, { backgroundColor: '#ecf0f1', width: '100%' }]} onPress={() => nav.navigate('CocktailDetail', { cocktail: item.name })}>
+                        <TouchableOpacity style={[styles.itemContainer, { backgroundColor: '#ecf0f1', width: '100%' }]} onPress={() => this.props.navigation.navigate('CocktailDetail', { cocktail: item.name })}>
                         <View>
                             <Image source={{ uri: item.image }} style={styles.image} />
                             <View style={styles.absoluteView}>
@@ -57,7 +86,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         borderRadius: 5,
         padding: 10,
-        height: 170,
+        height: 400,
         width: '100%',
       },
       itemName: {
@@ -81,4 +110,4 @@ const styles = StyleSheet.create({
       },
 });
 
-export default SearchBody
+export default RandomTab;

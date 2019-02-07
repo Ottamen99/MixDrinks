@@ -10,19 +10,20 @@ import CocktailDetail from './Components/Cocktail/CocktailView'
 
 const App = createStackNavigator({
   HomeScreen: {
-    screen: HomeScreen
+    screen: HomeScreen,
+    
   },
   SearchTabNavigator: {
-    screen: SearchTabNavigator
+    screen: SearchTabNavigator,
   },
   ListDrinksNavigator: {
     screen: DrinksListTabNavigator
   },
   CocktailDetail: {
-    screen: CocktailDetail
+    screen: CocktailDetail,
   },
 }, {
-  initialRouteName: 'SearchTabNavigator'
+  initialRouteName: 'SearchTabNavigator',
 })
 
 export default MyApp = createAppContainer(App)

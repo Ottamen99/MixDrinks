@@ -4,8 +4,6 @@ import { Container, Content } from 'native-base';
 import SearchHeader  from '../SearchHeader'
 import SearchBody  from '../SearchBody'
 
-import Axios from 'axios';
-
 class SearchTab extends React.Component {
 
     constructor(props) {
@@ -20,14 +18,14 @@ class SearchTab extends React.Component {
     
     cocktailSearch = () => {
         Keyboard.dismiss()
-        const drinkName = this.state.searchCocktail.toLocaleLowerCase()
-        const query = 'http://www.thecocktaildb.com/api/json/v1/1/search.php?s=manhattan'
+        const drinkName = this.state.searchCocktail.toLocaleLowerCase().trim()
+        const query = 'http://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + drinkName
         fetch(query).then((response) => {
             var data = response._bodyInit ? JSON.parse(response._bodyInit) : false
             if (data) {
                 console.log("TOZ");
                 this.setState({
-                    cocktailData: data.drinks[0],
+                    cocktailData: data.drinks,
                     cocktailFound: true
                 }) 
             }
@@ -38,7 +36,7 @@ class SearchTab extends React.Component {
 
     renderContent = () => {
         if(this.state.cocktailFound) {
-            return <SearchBody cocktailData={this.state.cocktailData}/>
+            return <SearchBody cocktailData={this.state.cocktailData} myNav={this.props.navigation}/>
         } else {
             console.log('Cocktail not found');
         }
