@@ -5,6 +5,11 @@ import FlatGrid from 'react-native-super-grid';
 
 class CategoryTab extends React.Component {
 
+    static navigationOptions = ({ navigation }) => {
+        return {
+            header: null
+        }
+    }
 
     state = {
         categories: {},
@@ -89,6 +94,7 @@ class CategoryTab extends React.Component {
 const styles = StyleSheet.create({
     gridView: {
         flex: 1,
+        marginTop: 30
       },
       image: {
           justifyContent: 'flex-end',

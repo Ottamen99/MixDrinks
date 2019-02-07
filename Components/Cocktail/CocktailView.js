@@ -5,6 +5,7 @@ import { Card } from 'react-native-elements';
 import { LinearGradient } from 'expo';
 
 class CocktailView extends React.Component {
+  
 
   state = {
     cocktail: {},

@@ -9,12 +9,13 @@ import CocktailDetail from './Components/Cocktail/CocktailView'
 
 
 const App = createStackNavigator({
-  HomeScreen: {
+  /*HomeScreen: {
     screen: HomeScreen,
     
-  },
+  },*/
   SearchTabNavigator: {
     screen: SearchTabNavigator,
+    navigationOptions: { header: null }
   },
   ListDrinksNavigator: {
     screen: DrinksListTabNavigator
@@ -22,8 +23,6 @@ const App = createStackNavigator({
   CocktailDetail: {
     screen: CocktailDetail,
   },
-}, {
-  initialRouteName: 'SearchTabNavigator',
 })
 
 export default MyApp = createAppContainer(App)

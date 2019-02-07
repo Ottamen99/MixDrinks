@@ -29,10 +29,10 @@ const getTabBarIcon = (navigation, focused, tintColor) => {
 };
 
 const SearchTabNavigator = createBottomTabNavigator({
-    Random:{screen: RandomTab},
+    //Random:{screen: RandomTab},
     Collection: {screen: CategoryTab},
     Search: {screen: SearchTab},
-    Favourite:{screen: FavouriteTab},
+    //Favourite:{screen: FavouriteTab},
     
 }, {
     defaultNavigationOptions: ({ navigation }) => ({

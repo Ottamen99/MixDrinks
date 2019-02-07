@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Beers",
-    "slug": "beerFinder",
+    "name": "Cocktailz",
+    "slug": "cocktailFinder",
     "privacy": "public",
     "sdkVersion": "32.0.0",
     "platforms": [
@@ -10,9 +10,9 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logoCocktails.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splashCocktails.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

@@ -1,21 +1,22 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, Keyboard, FlatList } from 'react-native';
 import { Container, Content } from 'native-base';
-import SearchHeader  from '../SearchHeader'
-import SearchBody  from '../SearchBody'
+import SearchHeader from '../SearchHeader'
+import SearchBody from '../SearchBody'
+import { SearchBar } from 'react-native-elements';
 
 class SearchTab extends React.Component {
 
     constructor(props) {
         super(props)
     }
-    
+
     state = {
         cocktailData: {},
         searchCocktail: "",
         cocktailFound: false
     }
-    
+
     cocktailSearch = () => {
         Keyboard.dismiss()
         const drinkName = this.state.searchCocktail.toLocaleLowerCase().trim()
@@ -27,30 +28,36 @@ class SearchTab extends React.Component {
                 this.setState({
                     cocktailData: data.drinks,
                     cocktailFound: true
-                }) 
+                })
             }
         }).catch((error) => {
-            this.setState({cocktailFound: false})
+            this.setState({ cocktailFound: false })
         })
     }
 
     renderContent = () => {
-        if(this.state.cocktailFound) {
-            return <SearchBody cocktailData={this.state.cocktailData} myNav={this.props.navigation}/>
+        if (this.state.cocktailFound) {
+            return <SearchBody cocktailData={this.state.cocktailData} myNav={this.props.navigation} />
         } else {
             console.log('Cocktail not found');
         }
     }
 
-    render(){
+    onEnd = () => {
+        alert('It Works');
+    }
+
+    render() {
         return (
-            <Container>
-                <SearchHeader
-                        value={this.state.searchCocktail}
-                        onChangeText={(searchCocktail) => this.setState({searchCocktail})}
-                        cocktailSearch={this.cocktailSearch}
-                    />
-                    
+            <Container style={styles.gridView}>
+                <SearchBar
+                    platform="ios"
+                    placeholder="Type Here..."
+                    value={this.state.searchCocktail}
+                    onChangeText={(searchCocktail) => this.setState({ searchCocktail })}
+                    onEndEditing={this.cocktailSearch}
+                />
+
                 <Content>
                     {this.renderContent()}
                 </Content>
@@ -58,5 +65,12 @@ class SearchTab extends React.Component {
         )
     }
 }
+
+const styles = StyleSheet.create({
+    gridView: {
+        flex: 1,
+        marginTop: 30
+    },
+})
 
 export default SearchTab;

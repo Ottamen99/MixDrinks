@@ -75,6 +75,7 @@ class RandomTab extends React.Component {
 const styles = StyleSheet.create({
     gridView: {
         flex: 1,
+        marginTop: 30
       },
       image: {
           justifyContent: 'flex-end',
