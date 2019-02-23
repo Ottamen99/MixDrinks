@@ -1,18 +1,18 @@
 {
   "expo": {
-    "name": "Cocktailz",
-    "slug": "cocktailFinder",
+    "name": "Mix'n Drinks",
+    "slug": "MixnDrinks",
     "privacy": "public",
     "sdkVersion": "32.0.0",
     "platforms": [
       "ios",
       "android"
     ],
-    "version": "1.0.0",
+    "version": "1.0.2",
     "orientation": "portrait",
-    "icon": "./assets/logoCocktails.png",
+    "icon": "./assets/logoCoktailsNoAlpha.png",
     "splash": {
-      "image": "./assets/splashCocktails.png",
+      "image": "./assets/splashMixDrinks.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -23,7 +23,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ottavio.buonomo.Cocktailz"
+    },
+    "android": {
+      "package": "com.ottavio.buonomo.Cocktailz",
+      "versionCode": 3 
     }
   }
 }

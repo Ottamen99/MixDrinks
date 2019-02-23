@@ -1,9 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, Keyboard, FlatList } from 'react-native';
-import { Container, Content } from 'native-base';
-import SearchHeader from '../SearchHeader'
+import { StyleSheet, Text, View, Image, Keyboard, SegmentedControlIOS } from 'react-native';
+import { Container, Content, Radio, ListItem, Left, Right } from 'native-base';
+import OfflineNotice from '../../Tools/OfflineNotice'
 import SearchBody from '../SearchBody'
 import { SearchBar } from 'react-native-elements';
+import RadioGroup from 'react-native-radio-buttons-group';
+
 
 class SearchTab extends React.Component {
 
@@ -14,25 +16,55 @@ class SearchTab extends React.Component {
     state = {
         cocktailData: {},
         searchCocktail: "",
-        cocktailFound: false
+        cocktailFound: false,
+        data: [
+            {
+                label: 'cocktail',
+                value: "cocktail",
+                color: '#fb7900',
+            },
+            {
+                label: 'ingredient',
+                value: "ingredient",
+                color: '#fb7900',
+            },
+        ],
     }
 
-    cocktailSearch = () => {
+    cocktailSearch = (searchType) => {
+        console.log(searchType);
+
         Keyboard.dismiss()
         const drinkName = this.state.searchCocktail.toLocaleLowerCase().trim()
-        const query = 'http://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + drinkName
-        fetch(query).then((response) => {
-            var data = response._bodyInit ? JSON.parse(response._bodyInit) : false
-            if (data) {
-                console.log("TOZ");
-                this.setState({
-                    cocktailData: data.drinks,
-                    cocktailFound: true
-                })
-            }
-        }).catch((error) => {
-            this.setState({ cocktailFound: false })
-        })
+        if (searchType == 'ingredient') {
+            const query = 'http://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + drinkName
+            fetch(query).then((response) => {
+                var data = response._bodyInit ? JSON.parse(response._bodyInit) : false
+                console.log(data);
+
+                if (data) {
+                    this.setState({
+                        cocktailData: data.drinks,
+                        cocktailFound: true
+                    })
+                }
+            }).catch((error) => {
+                this.setState({ cocktailFound: false })
+            })
+        } else {
+            const query = 'http://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + drinkName
+            fetch(query).then((response) => {
+                var data = response._bodyInit ? JSON.parse(response._bodyInit) : false
+                if (data) {
+                    this.setState({
+                        cocktailData: data.drinks,
+                        cocktailFound: true
+                    })
+                }
+            }).catch((error) => {
+                this.setState({ cocktailFound: false })
+            })
+        }
     }
 
     renderContent = () => {
@@ -43,23 +75,30 @@ class SearchTab extends React.Component {
         }
     }
 
-    onEnd = () => {
-        alert('It Works');
-    }
+    // update state
+    onPress = data => this.setState({ data });
 
     render() {
+        let selectedButton = this.state.data.find(e => e.selected == true);
+        selectedButton = selectedButton ? selectedButton.value : this.state.data[0].label;
+        place = "Enter " + selectedButton + " name"
         return (
             <Container style={styles.gridView}>
                 <SearchBar
                     platform="ios"
-                    placeholder="Type Here..."
+                    placeholder={place}
                     value={this.state.searchCocktail}
                     onChangeText={(searchCocktail) => this.setState({ searchCocktail })}
-                    onEndEditing={this.cocktailSearch}
+                    returnKeyType="search"
+                    onEndEditing={() => this.cocktailSearch(selectedButton)}
                 />
 
+                <View style={styles.container}>
+                    <RadioGroup radioButtons={this.state.data} onPress={this.onPress} flexDirection='row' />
+                </View>
                 <Content>
                     {this.renderContent()}
+                    <OfflineNotice />
                 </Content>
             </Container>
         )
@@ -69,7 +108,10 @@ class SearchTab extends React.Component {
 const styles = StyleSheet.create({
     gridView: {
         flex: 1,
-        marginTop: 30
+    },
+    container: {
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 })
 

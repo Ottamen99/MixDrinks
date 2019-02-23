@@ -2,10 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import {createBottomTabNavigator, createAppContainer} from 'react-navigation'
-import SearchTab from './tabNavigator/SearchTab'
-import FavouriteTab from './tabNavigator/FavouriteTab'
-import CategoryTab from './tabNavigator/CategoryTab'
-import RandomTab from './tabNavigator/RandomTab'
+import Cocktails from './Tabs/Cocktails'
+import Ingredients from './Tabs/Ingredients'
 import { Footer, FooterTab, Button, Icon } from 'native-base';
 import { Ionicons, Entypo } from '@expo/vector-icons'; // 6.2.2
 
@@ -14,14 +12,10 @@ const getTabBarIcon = (navigation, focused, tintColor) => {
     
     let IconComponent = Entypo;
     let iconName;
-    if (routeName === 'Search') {
-      iconName = `magnifying-glass`;
-    } else if (routeName === 'Favourite') {
-      iconName = `star`;
-    } else if (routeName === 'Collection') {
+    if (routeName === 'Ingredients') {
+      iconName = `bowl`;
+    } else if (routeName === 'Cocktails') {
       iconName = `drink`;
-    } else if (routeName === 'Random') {
-      iconName = `documents`;
     }
   
     // You can return any component that you like here!
@@ -30,13 +24,8 @@ const getTabBarIcon = (navigation, focused, tintColor) => {
 
 const SearchTabNavigator = createBottomTabNavigator({
     //Random:{screen: RandomTab},
-    Collection: {
-      screen: CategoryTab,
-      navigationOptions: ({ navigation }) => ({
-        test: navigation,
-      })
-    },
-    Search: {screen: SearchTab},
+    Ingredients: {screen: Ingredients},
+    Cocktails: {screen: Cocktails},
     //Favourite:{screen: FavouriteTab},
     
 }, {
@@ -48,4 +37,4 @@ const SearchTabNavigator = createBottomTabNavigator({
           getTabBarIcon(navigation, focused, tintColor),}),
 })
 
-export default TabBar = createAppContainer(SearchTabNavigator)
+export default TabBar = createAppContainer(SearchTabNavigator)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        

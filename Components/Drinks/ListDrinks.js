@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { Container, Content } from 'native-base';
 import FlatGrid from 'react-native-super-grid';
+import OfflineNotice from '../Tools/OfflineNotice'
 
 class ListDrinks extends React.Component {
 
@@ -52,24 +53,27 @@ class ListDrinks extends React.Component {
                 bigArray.push(tmp)
             });
             return (
-                <FlatGrid
-                    itemDimension={130}
-                    items={bigArray}
-                    style={styles.gridView}
-                    // staticDimension={300}
-                    // fixed
-                    // spacing={20}
-                    renderItem={({ item, index }) => (
-                        <TouchableOpacity style={[styles.itemContainer, { backgroundColor: '#ecf0f1', width: '100%', }]} onPress={() => this.props.navigation.navigate('CocktailDetail', { cocktail: item.name })}>
-                            <View>
-                                <Image source={{ uri: item.image }} style={styles.image} />
-                                <View style={styles.absoluteView}>
-                                    <Text style={styles.itemName}>{item.name}</Text>
+                <Container>
+                    <FlatGrid
+                        itemDimension={130}
+                        items={bigArray}
+                        style={styles.gridView}
+                        // staticDimension={300}
+                        // fixed
+                        // spacing={20}
+                        renderItem={({ item, index }) => (
+                            <TouchableOpacity style={[styles.itemContainer, { backgroundColor: '#ecf0f1', width: '100%', }]} onPress={() => this.props.navigation.navigate('CocktailDetail', { cocktail: item.name })}>
+                                <View>
+                                    <Image source={{ uri: item.image }} style={styles.image} />
+                                    <View style={styles.absoluteView}>
+                                        <Text style={styles.itemName}>{item.name}</Text>
+                                    </View>
                                 </View>
-                            </View>
-                        </TouchableOpacity>
-                    )}
-                />
+                            </TouchableOpacity>
+                        )}
+                    />
+                    <OfflineNotice />
+                </Container>
             );
         } else {
             return <View></View>
