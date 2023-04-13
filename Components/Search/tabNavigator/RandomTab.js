@@ -8,7 +8,12 @@ class RandomTab extends React.Component {
 
     state = {
         categories: {},
-        loaded: false
+        loaded: false,
+        isFetching: false,
+    }
+
+    onRefresh() {
+        this.setState({ isFetching: true }, function () { this.categoriesSearch() });
     }
 
     categoriesSearch = () => {
@@ -20,7 +25,8 @@ class RandomTab extends React.Component {
             if (data) {
                 this.setState({
                     categories: data.drinks,
-                    loaded: true
+                    loaded: true,
+                    isFetching: false
                 })
             }
         }).catch((error) => {
@@ -48,6 +54,8 @@ class RandomTab extends React.Component {
             });
             return (
                 <FlatGrid
+                    onRefresh={() => this.onRefresh()}
+                    refreshing={this.state.isFetching}
                     itemDimension={300}
                     items={bigArray}
                     style={styles.gridView}
@@ -55,14 +63,19 @@ class RandomTab extends React.Component {
                     // fixed
                     // spacing={20}
                     renderItem={({ item, index }) => (
-                        <TouchableOpacity style={[styles.itemContainer, { backgroundColor: '#ecf0f1', width: '100%' }]} onPress={() => this.props.navigation.navigate('CocktailDetail', { cocktail: item.name })}>
-                        <View>
-                            <Image source={{ uri: item.image }} style={styles.image} />
-                            <View style={styles.absoluteView}>
-                                <Text style={styles.itemName}>{item.name}</Text>
+                        <Container>
+                            <TouchableOpacity style={[styles.itemContainer, { backgroundColor: '#ecf0f1', width: '100%' }]} onPress={() => this.props.navigation.navigate('CocktailDetail', { cocktail: item.name })}>
+                                <View>
+                                    <Image source={{ uri: item.image }} style={styles.image} />
+                                    <View style={styles.absoluteView}>
+                                        <Text style={styles.itemName}>{item.name}</Text>
+                                    </View>
+                                </View>
+                            </TouchableOpacity>
+                            <View style={styles.desc}>
+                                <Text style={styles.desc}>Pull to find another random drink !</Text>
                             </View>
-                            </View>
-                        </TouchableOpacity>
+                        </Container>
                     )}
                 />
             );
@@ -75,40 +88,46 @@ class RandomTab extends React.Component {
 const styles = StyleSheet.create({
     gridView: {
         flex: 1,
-        marginTop: 30
-      },
-      image: {
-          justifyContent: 'flex-end',
-          borderRadius: 5,
-          width: '100%',
-          height: '100%',
-      },
-      itemContainer: {
+    },
+    image: {
+        justifyContent: 'flex-end',
+        borderRadius: 5,
+        width: '100%',
+        height: '100%',
+    },
+    itemContainer: {
         justifyContent: 'flex-end',
         borderRadius: 5,
         padding: 10,
         height: 400,
         width: '100%',
-      },
-      itemName: {
+    },
+    itemName: {
         fontSize: 16,
         color: '#fff',
         fontWeight: '600',
-      },
-      itemCode: {
+    },
+    itemCode: {
         fontWeight: '600',
         fontSize: 12,
         color: '#fff',
-      },
-      absoluteView: {
-          position: 'absolute',
-          alignItems: 'center',
-          height: '100%',
-          width: '100%',
-          justifyContent: 'center',
-          backgroundColor: 'rgba(52, 52, 52, 0.5)',
-          borderRadius: 5,
-      },
+    },
+    absoluteView: {
+        position: 'absolute',
+        alignItems: 'center',
+        height: '100%',
+        width: '100%',
+        justifyContent: 'center',
+        backgroundColor: 'rgba(52, 52, 52, 0.5)',
+        borderRadius: 5,
+    },
+    desc: {
+        fontSize: 18,
+        color: '#fb7900',
+        fontWeight: '600',
+        alignItems: 'center',
+        marginTop: 20,
+    },
 });
 
 export default RandomTab;

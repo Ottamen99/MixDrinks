@@ -13,19 +13,18 @@ class ListDrinks extends React.Component {
 
     static navigationOptions = ({ navigation }) => {
         return {
-            title: navigation.getParam('category', 'NO-CAT')
+            title: navigation.getParam('categoryName', 'NO-CAT')
         }
     }
 
     cocktailSearch = (cat) => {
-        const query = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=' + cat
-
+        const query = 'https://ottamendev.com/MixDrinks/restAPI/categories/filter.php?idCategory=' + cat
         fetch(query).then((response) => {
             var data = response._bodyInit ? JSON.parse(response._bodyInit) : false
 
             if (data) {
                 this.setState({
-                    cocktails: data.drinks,
+                    cocktails: data,
                     loaded: true,
                 })
             }
@@ -40,7 +39,7 @@ class ListDrinks extends React.Component {
 
     componentWillMount() {
         const { navigation } = this.props;
-        const cate = navigation.getParam('category', 'NO-CAT');
+        const cate = navigation.getParam('idCategory', 'NO-CAT');
         this.cocktailSearch(cate)
     }
 
@@ -49,7 +48,8 @@ class ListDrinks extends React.Component {
         if (this.state.cocktails[0] != undefined) {
             bigArray = []
             this.state.cocktails.forEach(element => {
-                tmp = { idDrink: element.idDrink, name: element.strDrink, image: element.strDrinkThumb }
+                
+                tmp = { idDrink: element.idDrink, name: element.drinkName, image: element.drinkThumb }
                 bigArray.push(tmp)
             });
             return (
@@ -58,9 +58,6 @@ class ListDrinks extends React.Component {
                         itemDimension={130}
                         items={bigArray}
                         style={styles.gridView}
-                        // staticDimension={300}
-                        // fixed
-                        // spacing={20}
                         renderItem={({ item, index }) => (
                             <TouchableOpacity style={[styles.itemContainer, { backgroundColor: '#ecf0f1', width: '100%', }]} onPress={() => this.props.navigation.navigate('CocktailDetail', { cocktail: item.name })}>
                                 <View>

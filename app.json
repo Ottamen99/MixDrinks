@@ -8,7 +8,7 @@
       "ios",
       "android"
     ],
-    "version": "1.0.2",
+    "version": "1.0.3",
     "orientation": "portrait",
     "icon": "./assets/logoCoktailsNoAlpha.png",
     "splash": {
@@ -28,7 +28,7 @@
     },
     "android": {
       "package": "com.ottavio.buonomo.Cocktailz",
-      "versionCode": 3 
+      "versionCode": 4 
     }
   }
 }

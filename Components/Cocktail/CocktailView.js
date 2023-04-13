@@ -8,14 +8,14 @@ import OfflineNotice from '../Tools/OfflineNotice'
 class CocktailView extends React.Component {
 
   static navigationOptions = {
-    headerRight: (
-      <TouchableHighlight >
+    /*headerRight: (
+      <TouchableHighlight onPress={() => {console.log("fav")}}>
         <Image
           style={{alignItems: 'center', marginRight: 10,}}
           source={require('../../assets/fullStar.png')}
         />
       </TouchableHighlight>
-    ),
+    ),*/
   }
 
   state = {
@@ -52,7 +52,6 @@ class CocktailView extends React.Component {
 
   render() {
     if (this.state.cocktail[0] != undefined) {
-      console.log(this.state.cocktail[0]);
 
       return (
         <Container >

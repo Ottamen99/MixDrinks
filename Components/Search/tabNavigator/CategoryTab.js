@@ -32,14 +32,13 @@ class CategoryTab extends React.Component {
     ]
 
     categoriesSearch = () => {
-        //const drinkName = this.state.searchCocktail.toLocaleLowerCase()
-        const query = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list'
-        fetch(query).then((response) => {
+        
+        const query = 'https://ottamendev.com/MixDrinks/restAPI/categories'
+        fetch(query).then((response) => {            
             var data = response._bodyInit ? JSON.parse(response._bodyInit) : false
-
             if (data) {
                 this.setState({
-                    categories: data.drinks,
+                    categories: data,
                     loaded: true
                 })
             }
@@ -62,7 +61,7 @@ class CategoryTab extends React.Component {
             bigArray = []
             cpt = 0
             this.state.categories.forEach(element => {
-                tmp = { name: element.strCategory, image: this.imgs[cpt] }
+                tmp = { id: element.idCategory, name: element.categoryName, image: this.imgs[cpt] }
                 cpt++
                 bigArray.push(tmp)
             });
@@ -72,11 +71,8 @@ class CategoryTab extends React.Component {
                         itemDimension={130}
                         items={bigArray}
                         style={styles.gridView}
-                        // staticDimension={300}
-                        // fixed
-                        // spacing={20}
                         renderItem={({ item, index }) => (
-                            <TouchableOpacity style={[styles.itemContainer, { backgroundColor: '#ecf0f1', width: '100%' }]} onPress={() => this.props.navigation.navigate('ListDrinksNavigator', { category: item.name })}>
+                            <TouchableOpacity style={[styles.itemContainer, { backgroundColor: '#ecf0f1', width: '100%' }]} onPress={() => this.props.navigation.navigate('ListDrinksNavigator', { idCategory: item.id,  categoryName: item.name})}>
                                 <View>
                                     <Image source={{ uri: item.image }} style={styles.image} />
                                     <View style={styles.absoluteView}>

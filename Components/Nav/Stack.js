@@ -1,20 +1,20 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableHighlight, FlatList } from 'react-native';
+import { StyleSheet, Image, TouchableHighlight } from 'react-native';
 import SearchTabNavigator from '../Search/SearchTabNavigator'
 import DrinksListTabNavigator from '../Drinks/ListDrinks'
-import { createStackNavigator, createAppContainer, DrawerActions} from 'react-navigation'
+import { createStackNavigator, createAppContainer} from 'react-navigation'
 import CocktailDetail from '../Cocktail/CocktailView'
+import About from '../About/AboutNav'
 
 
-export default class App extends React.Component {
+export default class DrinkStackNavigator extends React.Component {
   static navigationOptions = ({ navigation }) => {
     parent = navigation.dangerouslyGetParent();
-    console.log(parent);
     
   };
   render() {
     return (
-        <MyApp/>
+        <DrinkStack/>
     );
   }
 }
@@ -26,14 +26,22 @@ const AppNav = createStackNavigator({
     screen: SearchTabNavigator,
     navigationOptions: ({navigation}) => ({
         title: 'Mix\'n Drinks',
-        /*headerLeft: (
+        headerLeft: (
           <TouchableHighlight onPress={() => { parent.openDrawer() }}>
             <Image
               style={styles.button}
               source={require('../../assets/menu.png')}
             />
           </TouchableHighlight>
-        ),*/
+        ),
+        headerRight: (
+          <TouchableHighlight onPress={() => { navigation.navigate() }}>
+            <Image
+              style={styles.button}
+              source={require('../../assets/menu.png')}
+            />
+          </TouchableHighlight>
+        ),
       })
   },
   ListDrinksNavigator: {
@@ -44,7 +52,7 @@ const AppNav = createStackNavigator({
   },
 })
 
-export const MyApp = createAppContainer(AppNav)
+export const DrinkStack = createAppContainer(AppNav)
 
 // ----------------------------------------------------------------
 // Style
